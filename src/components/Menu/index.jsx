@@ -8,7 +8,7 @@ const Menu = () => {
       {
         title: 'Accessories',
         imageUrl:
-          'https://images.unsplash.com/photo-1517423568366-8b83523034fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+          'https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
         id: 1,
         linkUrl: 'shop/accessories',
       },
@@ -45,8 +45,8 @@ const Menu = () => {
   });
   return (
     <div className='menu'>
-      {state.sections.map(({ title, imageUrl, id, size }) => (
-        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+      {state.sections.map(({ id, ...otherSecProps }) => (
+        <MenuItem key={id} {...otherSecProps} />
       ))}
     </div>
   );
