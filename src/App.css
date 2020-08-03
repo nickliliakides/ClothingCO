@@ -41,3 +41,8 @@ body {
   font-family: 'Roboto', sans-serif;
   padding: 20px 80px;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
