@@ -6,15 +6,19 @@
   align-items: center;
   margin-bottom: 25px;
 
+
   .logo-container {
     height: 100%;
     width: 100px;
-    padding: 25px;
+    // padding: 25px;
     display: flex;
+    align-items: center;
+
 
     .logo {
-      width: 100%;
-      height: 100%;
+      width: 100px;
+      height: 70px;
+      margin-left: -20px;
     }
   }
 
@@ -24,6 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    cursor: pointer;
 
     .option {
       padding: 10px 15px;
