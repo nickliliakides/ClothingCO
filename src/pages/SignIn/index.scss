@@ -1,0 +1,12 @@
+.sign-in-up-wrapper {
+  display: flex;
+  justify-content: center;
+
+  >div:first-child {
+    margin-right: 25px;
+  }
+
+  >div:last-child {
+    margin-left: 25px;
+  }
+}

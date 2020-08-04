@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import './index.scss';
 import FormInput from '../FormInput';
 import CustomButton from '../CustomButton';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+
+const initialState = {
+  email: '',
+  password: '',
+};
 
 const SignIn = () => {
-  const [state, setState] = useState({
-    email: '',
-    password: '',
-  });
+  const [state, setState] = useState(initialState);
+
+  const { email, password } = state;
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -16,20 +20,26 @@ const SignIn = () => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setState({ ...state, email: '', password: '' });
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setState({ ...state, email: '', password: '' });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className='sign-in'>
-      <h2>Already have an account?</h2>
+      <h2 className='title'>Already have an account?</h2>
       <span>Sign in with your email and password.</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           name='email'
           type='email'
-          value={state.email}
+          value={email}
           handleChange={handleChange}
           label='Email'
           required
@@ -37,7 +47,7 @@ const SignIn = () => {
         <FormInput
           name='password'
           type='password'
-          value={state.password}
+          value={password}
           handleChange={handleChange}
           label='Password'
           required
