@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import './index.scss';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import { toggleCartDisplay } from '../../store/actions/cart.actions';
-import { selectCartItemsCount } from '../../store/cart.selectors';
+import { selectCartItemsCount } from '../../store/selectors/cart.selectors';
 
 const CartIcon = ({ toggleCartDisplay, itemCount }) => {
   return (

@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import './index.scss';
 import CustomButton from '../CustomButton';
 import CartItem from '../CartItem';
-import { selectCartItems } from '../../store/cart.selectors';
+import { selectCartItems } from '../../store/selectors/cart.selectors';
 import { toggleCartDisplay } from '../../store/actions/cart.actions';
 
 const CartDropdown = ({ cartItems, history, toggleCartDisplay }) => {

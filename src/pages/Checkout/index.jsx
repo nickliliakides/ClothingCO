@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCartItems, selectCartTotal } from '../../store/cart.selectors';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/selectors/cart.selectors';
 import './index.scss';
 import CheckoutItem from '../../components/CheckoutItem';
+import StripeButton from '../../components/StripeButton';
 
 const ChechOut = ({ cartItems, total }) => {
   return (
@@ -31,6 +35,7 @@ const ChechOut = ({ cartItems, total }) => {
       <div className='total'>
         <span>TOTAL: £{total}</span>
       </div>
+      <StripeButton price={total} />
     </div>
   );
 };
