@@ -2,11 +2,15 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import './index.scss';
 import CustomButton from '../CustomButton';
 import CartItem from '../CartItem';
 import { selectCartItems } from '../../store/selectors/cart.selectors';
 import { toggleCartDisplay } from '../../store/actions/cart.actions';
+import {
+  CartDropdownContainer,
+  CartItemsContainer,
+  EmptyMesageContainer,
+} from './cart.dropdown.styles';
 
 const CartDropdown = ({ cartItems, history, toggleCartDisplay }) => {
   const handleGoToCheckout = () => {
@@ -15,16 +19,18 @@ const CartDropdown = ({ cartItems, history, toggleCartDisplay }) => {
   };
 
   return (
-    <div className='cart-dropdown'>
-      <div className='cart-items'>
+    <CartDropdownContainer>
+      <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} item={item} />)
         ) : (
-          <span className='empty-message'>Your cart is empty</span>
+          <EmptyMesageContainer className='empty-message'>
+            Your cart is empty
+          </EmptyMesageContainer>
         )}
-      </div>
+      </CartItemsContainer>
       <CustomButton onClick={handleGoToCheckout}>Go To Checkout</CustomButton>
-    </div>
+    </CartDropdownContainer>
   );
 };
 

@@ -5,30 +5,42 @@ import {
   decreaseItem,
   addItem,
 } from '../../store/actions/cart.actions';
-import './index.scss';
+import {
+  CheckoutItemContainer,
+  CheckoutItemImageContainer,
+  CheckoutItemNameContainer,
+  CheckoutItemQuantityContainer,
+  CheckoutItemQuantityArrowContainer,
+  CheckoutItemQuantityValueContainer,
+  CheckoutItemPriceContainer,
+  RemoveButtonContainer,
+  CheckoutItemImage,
+} from './checkout.item.styles';
 
 const CheckoutItem = ({ item, removeItem, decreaseItem, addItem }) => {
   const { name, imageUrl, price, quantity } = item;
   return (
-    <div className='checkout-item'>
-      <div className='image-container'>
-        <img src={imageUrl} alt='item' />
-      </div>
-      <span className='name'>{name}</span>
-      <span className='quantity'>
-        <div className='arrow' onClick={() => decreaseItem(item)}>
+    <CheckoutItemContainer>
+      <CheckoutItemImageContainer>
+        <CheckoutItemImage src={imageUrl} alt='item' />
+      </CheckoutItemImageContainer>
+      <CheckoutItemNameContainer>{name}</CheckoutItemNameContainer>
+      <CheckoutItemQuantityContainer>
+        <CheckoutItemQuantityArrowContainer onClick={() => decreaseItem(item)}>
           &#10094;
-        </div>
-        <span className='value'>{quantity}</span>
-        <div className='arrow' onClick={() => addItem(item)}>
+        </CheckoutItemQuantityArrowContainer>
+        <CheckoutItemQuantityValueContainer>
+          {quantity}
+        </CheckoutItemQuantityValueContainer>
+        <CheckoutItemQuantityArrowContainer onClick={() => addItem(item)}>
           &#10095;
-        </div>
-      </span>
-      <span className='price'>£{price}</span>
-      <div className='remove-button' onClick={() => removeItem(item)}>
+        </CheckoutItemQuantityArrowContainer>
+      </CheckoutItemQuantityContainer>
+      <CheckoutItemPriceContainer>£{price}</CheckoutItemPriceContainer>
+      <RemoveButtonContainer onClick={() => removeItem(item)}>
         &#10008;
-      </div>
-    </div>
+      </RemoveButtonContainer>
+    </CheckoutItemContainer>
   );
 };
 
