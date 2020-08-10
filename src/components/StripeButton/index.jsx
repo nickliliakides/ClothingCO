@@ -17,6 +17,7 @@ const StripeButton = ({ price }) => {
       shippingAddress
       description={`Your total is £${price}`}
       amount={price4Stripe}
+      currency='EUR'
       panelLabel='Pay with Card'
       token={onToken}
       stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
