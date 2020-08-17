@@ -3,6 +3,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   DECREASE_ITEM,
+  CLEAR_CART,
 } from './types';
 
 export const toggleCartDisplay = () => ({
@@ -22,4 +23,8 @@ export const removeItem = (item) => ({
 export const decreaseItem = (item) => ({
   type: DECREASE_ITEM,
   payload: item,
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });

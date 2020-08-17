@@ -9,16 +9,19 @@ import {
 } from './collection.styles';
 
 const Collection = ({ collection }) => {
-  const { title, items } = collection;
   return (
-    <CollectionPageContainer>
-      <CollectionPageTitleContainer>{title}</CollectionPageTitleContainer>
-      <CollectionPageItemsContainer>
-        {items.map((item) => (
-          <PreviewItem key={item.id} item={item} />
-        ))}
-      </CollectionPageItemsContainer>
-    </CollectionPageContainer>
+    collection && (
+      <CollectionPageContainer>
+        <CollectionPageTitleContainer>
+          {collection.title}
+        </CollectionPageTitleContainer>
+        <CollectionPageItemsContainer>
+          {collection.items.map((item) => (
+            <PreviewItem key={item.id} item={item} />
+          ))}
+        </CollectionPageItemsContainer>
+      </CollectionPageContainer>
+    )
   );
 };
 

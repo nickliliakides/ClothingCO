@@ -1,9 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { putResolve } from 'redux-saga/effects';
 
 const config = {
-  apiKey: 'AIzaSyADapWjWk187qwXbn45ym3xxKGdOu1ne3E',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'clothing-co-f4112.firebaseapp.com',
   databaseURL: 'https://clothing-co-f4112.firebaseio.com',
   projectId: 'clothing-co-f4112',
@@ -73,12 +74,21 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
+export const getCurrentUser = () => {
+  return new Promise((res, err) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      res(userAuth);
+    }, err);
+  });
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
