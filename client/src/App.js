@@ -14,27 +14,6 @@ import CheckOut from './pages/Checkout';
 function App({ currentUser, checkUserSession }) {
   useEffect(() => {
     checkUserSession();
-    // auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     userRef.onSnapshot((snapShot) => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //       // setState({
-    //       // currentUser: {
-    //       //   id: snapShot.id,
-    //       //   ...snapShot.data(),
-    //       // },
-    //       // });
-    //     });
-    //   }
-    //   setCurrentUser(userAuth);
-    //   return () => {
-    //     setCurrentUser(null);
-    //   };
-    // });
   }, [checkUserSession]);
 
   return (

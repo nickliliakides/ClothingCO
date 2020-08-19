@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { fetchCollectionsStart } from '../../store/actions/shop.actions';
 import CollectionsOverviewContainer from '../../components/CollectionsOverview/collections.overview.container';
 import CollectionContainer from '../Collection/collection.container';
-// import { fetchCollectionsStart } from '../../store/sagas/shop.sagas';
 
-const Shop = (props) => {
-  const { match, fetchCollectionsStart } = props;
-
+const Shop = ({ match, fetchCollectionsStart }) => {
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
