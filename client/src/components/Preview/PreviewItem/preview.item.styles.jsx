@@ -9,6 +9,11 @@ export const CollectionPreviewItemContainer = styled.div`
   align-items: center;
   position: relative;
 
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   &:hover {
     button {
       display: flex;

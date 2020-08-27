@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './store/selectors/user.selectors';
 import { checkUserSession } from './store/actions/user.actions';
-import './App.css';
-import HomePage from './pages/Home';
-import Shop from './pages/Shop';
+import { GlobalStyle } from './global.styles';
 import Header from './components/Header';
-import SignInUp from './pages/SignIn';
-import CheckOut from './pages/Checkout';
+import {
+  SpinnerContainer,
+  SpinnerOverlay,
+} from './components/Spinner/spinner.styles';
+import ErrorBoundary from './components/ErrorBoundary';
+
+const HomePage = lazy(() => import('./pages/Home'));
+const Shop = lazy(() => import('./pages/Shop'));
+const SignInUp = lazy(() => import('./pages/SignIn'));
+const CheckOut = lazy(() => import('./pages/Checkout'));
 
 function App({ currentUser, checkUserSession }) {
   useEffect(() => {
@@ -18,16 +24,27 @@ function App({ currentUser, checkUserSession }) {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route path='/shop' component={Shop} />
-        <Route
-          exact
-          path='/signin'
-          render={() => (currentUser ? <Redirect to='/' /> : <SignInUp />)}
-        />
-        <Route exact path='/checkout' component={CheckOut} />
+        <ErrorBoundary>
+          <Suspense
+            fallback={
+              <SpinnerOverlay>
+                <SpinnerContainer />
+              </SpinnerOverlay>
+            }
+          >
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={Shop} />
+            <Route
+              exact
+              path='/signin'
+              render={() => (currentUser ? <Redirect to='/' /> : <SignInUp />)}
+            />
+            <Route exact path='/checkout' component={CheckOut} />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   );

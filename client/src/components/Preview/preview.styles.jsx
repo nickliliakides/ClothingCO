@@ -14,4 +14,8 @@ export const CollectionPreviewTitleContainer = styled.h1`
 export const CollectionPreviewItemsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
